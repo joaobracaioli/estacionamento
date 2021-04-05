@@ -1,4 +1,4 @@
-package java;
+package estacionamento_java;
 
 public enum TipoVeiculo {
 
