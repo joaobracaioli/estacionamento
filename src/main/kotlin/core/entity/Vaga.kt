@@ -7,5 +7,5 @@ data class Vaga(
     val numero: String,
     var incio: LocalDateTime? = null,
     val tipo: TipoVaga,
-    var placa: String? = null
+    var placa: String = ""
 )
