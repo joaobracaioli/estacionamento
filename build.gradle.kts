@@ -4,16 +4,19 @@ plugins {
     id("org.springframework.boot") version "2.4.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.4.32"
-    application
     kotlin("plugin.spring") version "1.4.31"
 }
 
 group = "me.joaobracaioli"
 version = "1.0-SNAPSHOT"
 
+apply(plugin = "kotlin")
+
 repositories {
     mavenCentral()
 }
+
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -29,10 +32,9 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "11"
-}
-
-application {
-    mainClassName = "MainKt"
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "11"
+    }
 }
